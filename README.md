@@ -11,7 +11,7 @@ Loop through each item in the items array
 
 multiply the quantity of each item by the price
 
-Add the result to the total
+Add the result to the sum total
 
  Return the total amount
 
