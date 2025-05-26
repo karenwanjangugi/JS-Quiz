@@ -75,67 +75,88 @@ const { resolve } = require("path");
 
 
 
-class TeamMember {
-    constructor(name, role, tasks) {
-      this.name = name;
-      this.role = role;
-      this.tasks = tasks;
-    }
-  
-    completeTask(taskTitle) {
-      if (this.tasks && this.tasks.some(task => task.taskTitle === "completed")) {
-        console.log(`${taskTitle} is completed`);
-      } else {
-        console.log(`${taskTitle} is not completed`);
-      }
-    }
-  
-    async checkProgress() {
-      return new Promise((resolve, reject) => {
-        if (this.tasks && this.tasks.every(task => task.status === "completed")) {
-          resolve(`All tasks completed!`);
-        } else {
-          reject(`Pending tasks remaining`);
-        }
-      });
-    }
-  }
-  
-  const member1 = new TeamMember("Kiuy", "leader", [
-    { taskTitle: "task1", status: "completed" },
-    { taskTitle: "task2", status: "completed" }
-  ]);
-  
-  const member2 = new TeamMember("Kisa", "manager", [
-    { taskTitle: "task3", status: "completed" },
-    { taskTitle: "task4", status: "Not completed" }
-  ]);
-  
-  member1.checkProgress()
-    .then(result => console.log(result))
-    .catch(error => console.log(error));
-  
-  member2.checkProgress()
-    .then(result => console.log(result))
-    .catch(error => console.log(error));
-
-
-// class Candidates{
-//     constructor(name, position, interviews){
-//         this.name = name
-//         this.position = position
-//         this.interviews = interviews
+// class TeamMember {
+//     constructor(name, role, tasks) {
+//       this.name = name;
+//       this.role = role;
+//       this.tasks = tasks;
 //     }
-// }
+  
+//     completeTask(taskTitle) {
+//       if (this.tasks.every(task => task.status === "completed")) {
+//         console.log(`${taskTitle} is completed`);
+//       } else {
+//         console.log(`${taskTitle} is not completed`);
+//       }
+//     }
+  
+//     async checkProgress() {
+//       return new Promise((resolve, reject) => {
+//         if (this.tasks.every(task => task.status === "completed")) {
+//           resolve(`All tasks completed!`);
+//         } else {
+//           reject(`Pending tasks remaining`);
+//         }
+//       });
+//     }
+//   }
+  
+//   const member1 = new TeamMember("Kiuy", "leader", [
+//     { taskTitle: "task1", status: "completed" },
+//     { taskTitle: "task2", status: "completed" }
+//   ]);
+  
+//   const member2 = new TeamMember("Kisa", "manager", [
+//     { taskTitle: "task3", status: "completed" },
+//     { taskTitle: "task4", status: "Not completed" }
+//   ]);
+  
+//   member1.checkProgress()
+//     .then(result => console.log(result))
+//     .catch(error => console.log(error));
+  
+//   member2.checkProgress()
+//     .then(result => console.log(result))
+//     .catch(error => console.log(error));
 
-// Candidates.prototype.scheduleInterviews = function(date) {
+
+class Candidates{
+    constructor(name, position, interviews){
+        this.name = name
+        this.position = position
+        this.interviews = interviews
+    }
+
+    scheduleInterviews(date){
+        if(this.interviews(interview => interview.status === "Pending")){
+            this.interviews.push(date)
+
+        }
+
+    }
+
+    async sendConfirmation(){
+
+    }
+}
 
 
 
-// }
-// Candidates.prototype.sendConfirmation = function() {
 
-// }
+const candidate = new Candidates(
+    "mark", "engineer",[
+        {date: "12th May", status: "pending"},
+        {date: "12th June", status: "pending"},
+        {date: "30th June", status: "approved"}
+    ])
+new Candidates(
+    "john", "engineer",[
+        {date: "12th May", status: "approved"},
+        {date: "12th June", status: "pending"},
+        {date: "30th June", status: "approved"}
+    ]
+)
+
 
 // class Course{
 //     constructor(title,instructor,students){
