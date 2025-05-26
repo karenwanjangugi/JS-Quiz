@@ -1,123 +1,96 @@
-// class CustomerOrder{
-// constructor(orderId, items, status)
-//     {
-//         this.orderId = orderId
-//         this.items = items
-//         this.status = status
-// }
-
-const { rejects } = require("assert");
-const { resolve } = require("path");
-
-// }
+class CustomerOrder{
+constructor(orderId, items, status)
+    {
+        this.orderId = orderId
+        this.items = items
+        this.status = status
+    }
+        
+}
 
 
-// CustomerOrder.prototype.calculateTotal = function () {
-//     let sum = 0;
-//     for(let order in orders){
-//         for (let i = 0; i < this.items.length; i++) {
-//         sum += this.items[i].price; 
-//     }
-//     return sum;}
-// }
+CustomerOrder.prototype.calculateTotal = function () {
+    let sum = 0;
+    
+        for (let i = 0; i < this.items.length; i++) {
+        sum += this.items[i].price * this.items[i].quantity; 
+    }
+    return sum;
+}
 
-// const orders = new CustomerOrder(
+CustomerOrder.prototype.processPayment = async function processPayment() {
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+    this.status = "paid";
+    console.log(`Payment successful`);
+  } 
+    
+
+
+const orders = new CustomerOrder(
    
-//     "001",[{
-//         name: "soap",
-//         quantity: "2kg",
-//         price: 200
-//     },{
-//         name: "soap",
-//         quantity: "2kg",
-//         price: 200
-//     },{
-//         name: "soap",
-//         quantity: "2kg",
-//         price: 200
-//     }
-// ], "Pending")
+    "001",[{
+        name: "soap",
+        quantity: "2",
+        price: 200
+    },{
+        name: "soap",
+        quantity: "2",
+        price: 200
+    },{
+        name: "soap",
+        quantity: "2",
+        price: 200
+    }
+], "Pending")
 
-// new CustomerOrder("002",[{
-//     name: "soap",
-//     quantity: "2kg",
-//     price: 200
-// },{
-//     name: "soap",
-//     quantity: "2kg",
-//     price: 200
-// },{
-//     name: "soap",
-//     quantity: "2kg",
-//     price: 200
-// }
-// ], "Pending")
-
-// new CustomerOrder("003",[{
-//     name: "soap",
-//     quantity: "2kg",
-//     price: 200
-// },{
-//     name: "soap",
-//     quantity: "2kg",
-//     price: 200
-// },{
-//     name: "soap",
-//     quantity: "2kg",
-//     price: 200
-// }
-// ], "Pending"
-// )
-
-// console.log(orders.calculateTotal())
+console.log("Total amount:", orders.calculateTotal());
+orders.processPayment();
 
 
 
-
-
-// class TeamMember {
-//     constructor(name, role, tasks) {
-//       this.name = name;
-//       this.role = role;
-//       this.tasks = tasks;
-//     }
+class TeamMember {
+    constructor(name, role, tasks) {
+      this.name = name;
+      this.role = role;
+      this.tasks = tasks;
+    }
   
-//     completeTask(taskTitle) {
-//       if (this.tasks.every(task => task.status === "completed")) {
-//         console.log(`${taskTitle} is completed`);
-//       } else {
-//         console.log(`${taskTitle} is not completed`);
-//       }
-//     }
+    completeTask(taskTitle) {
+      if (this.tasks.every(task => task.status === "completed")) {
+        console.log(`${taskTitle} is completed`);
+      } else {
+        console.log(`${taskTitle} is not completed`);
+      }
+    }
   
-//     async checkProgress() {
-//       return new Promise((resolve, reject) => {
-//         if (this.tasks.every(task => task.status === "completed")) {
-//           resolve(`All tasks completed!`);
-//         } else {
-//           reject(`Pending tasks remaining`);
-//         }
-//       });
-//     }
-//   }
+    async checkProgress() {
+      return new Promise((resolve, reject) => {
+        if (this.tasks.every(task => task.status === "completed")) {
+          resolve(`All tasks completed!`);
+        } else {
+          reject(`Pending tasks remaining`);
+        }
+      });
+    }
+  }
   
-//   const member1 = new TeamMember("Kiuy", "leader", [
-//     { taskTitle: "task1", status: "completed" },
-//     { taskTitle: "task2", status: "completed" }
-//   ]);
+  const member1 = new TeamMember("Kiuy", "leader", [
+    { taskTitle: "task1", status: "completed" },
+    { taskTitle: "task2", status: "completed" }
+  ]);
   
-//   const member2 = new TeamMember("Kisa", "manager", [
-//     { taskTitle: "task3", status: "completed" },
-//     { taskTitle: "task4", status: "Not completed" }
-//   ]);
+  const member2 = new TeamMember("Kisa", "manager", [
+    { taskTitle: "task3", status: "completed" },
+    { taskTitle: "task4", status: "Not completed" }
+  ]);
   
-//   member1.checkProgress()
-//     .then(result => console.log(result))
-//     .catch(error => console.log(error));
+  member1.checkProgress()
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
   
-//   member2.checkProgress()
-//     .then(result => console.log(result))
-//     .catch(error => console.log(error));
+  member2.checkProgress()
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
 
 
 class Candidates{
