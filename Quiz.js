@@ -128,19 +128,30 @@ class Candidates{
     }
 
     scheduleInterviews(date){
-        if(this.interviews(interview => interview.status === "Pending")){
-            this.interviews.push(date)
+        let scheduledInterview ={
+            date: date,
+            status: "pending"
+          };
+        this.interviews.push(scheduledInterview)
 
-        }
+        
 
     }
 
     async sendConfirmation(){
+        return new Promise((resolve) => {
+            setTimeout(() => {
+              let message = `Interview confirmed with ${this.name}`;
+              resolve(message);
+            }, 1000);
+          }).then((msg) => {
+            console.log(msg);
+            return msg;
+          });
+        }
+      }
 
-    }
-}
-
-
+      
 
 
 const candidate = new Candidates(
@@ -149,14 +160,12 @@ const candidate = new Candidates(
         {date: "12th June", status: "pending"},
         {date: "30th June", status: "approved"}
     ])
-new Candidates(
-    "john", "engineer",[
-        {date: "12th May", status: "approved"},
-        {date: "12th June", status: "pending"},
-        {date: "30th June", status: "approved"}
-    ]
-)
 
+
+console.log(candidate.scheduleInterviews('20th august'));
+candidate.sendConfirmation();
+  console.log(candidate.interviews);
+  
 
 // class Course{
 //     constructor(title,instructor,students){
